@@ -2,22 +2,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stream/constants.dart';
-import 'package:stream/screens/auth/register_screen.dart';
+import 'package:stream/screens/auth/login_screen.dart';
+import 'package:stream/screens/auth/phone_verification.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key key}) : super(key: key);
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  bool _isObscure = true;
-  void _toggleVisivility() {
-    setState(() {
-      _isObscure = !_isObscure;
-    });
-  }
+class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,12 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        automaticallyImplyLeading: false,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        actions: [
+          IconButton(icon: Icon(Icons.help_outline),onPressed: (){},)
+        ],
       ),
       body: Container(
         color: Colors.white,
@@ -37,11 +38,12 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Sign In",
+              "Register",
               style: GoogleFonts.poppins(
                   fontSize: 20, fontWeight: FontWeight.w500),
             ),
-            Text("Welcome back to Stream",
+            Text("Choose your country code and enter\nyour phone number",
+                textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
@@ -65,51 +67,65 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               width: size.width * 0.89,
               child: TextFormField(
-                obscureText: _isObscure,
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.phone,
                 style:
                     GoogleFonts.poppins(fontSize: 16, color: Colors.grey[600]),
                 decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _isObscure ? Icons.visibility_off : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      _toggleVisivility();
-                    },
-                  ),
-                  labelText: "Password",
+                  labelText: "Phone Number",
                   labelStyle: GoogleFonts.poppins(fontSize: 18),
                 ),
               ),
             ),
             Spacer(),
             RichText(
-                text: TextSpan(text: "Don't have an account?",style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey[600]), children: [
-              TextSpan(
-                  text: " Register",style: GoogleFonts.poppins(fontSize: 14, color: kPrimaryBlue, fontWeight: FontWeight.w500),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  RegisterPage(),
-                            ),
-                          ))
-            ])),
+                text: TextSpan(
+                    text: "Already have an account?",
+                    style: GoogleFonts.poppins(
+                        fontSize: 14, color: Colors.grey[600]),
+                    children: [
+                  TextSpan(
+                      text: " Sign in",
+                      style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: kPrimaryBlue,
+                          fontWeight: FontWeight.w500),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => Navigator.pop(context))
+                ])),
             Spacer(
               flex: 6,
             ),
+            RichText(
+              textAlign: TextAlign.center,
+                text: TextSpan(
+                    text: "By submitting this application you confirm that you\nare authorized to share this information and agree\nwith our",
+                    style: GoogleFonts.poppins(
+                        fontSize: 12, color: Colors.grey[600]),
+                    children: [
+                  TextSpan(
+                      text: " Terms and Conditions",
+                      style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          color: kPrimaryBlue,
+                          fontWeight: FontWeight.w500),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => LoginPage(),
+                          ),
+                  ))
+                ])),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 26.0),
+                  padding: const EdgeInsets.only(bottom: 26.0, top: 32),
                   child: Container(
                     width: size.width * 0.915,
                     height: size.height * 0.073,
                     child: MaterialButton(
                       child: Text(
-                        "Sign In",
+                        "Send Verification Code",
                         style: GoogleFonts.poppins(
                             color: Colors.white, fontSize: 16),
                       ),
@@ -117,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (BuildContext context) => LoginPage(),
+                            builder: (BuildContext context) => PhoneVerification(),
                           ),
                         );
                       },

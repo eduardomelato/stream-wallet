@@ -50,7 +50,7 @@ class _IntroState extends State<Intro> {
                               color: Colors.white, fontSize: 16),
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement<void, void>(
+                          Navigator.push(
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
