@@ -37,7 +37,7 @@ class CalcButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(50.0),
           ),
           onPressed: () {
-            callback(text);
+            isIcon? print("kkk") : callback(text);
           },
           child: isIcon? Icon(icondata) : Text(
             text,

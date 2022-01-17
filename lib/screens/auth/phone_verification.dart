@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stream/constants.dart';
@@ -15,7 +16,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
     setState(() {
       _expression += val;
     });
-    if(_expression.length==6){
+    if (_expression.length == 6) {
       print(_expression);
     }
   }
@@ -39,7 +40,9 @@ class _PhoneVerificationState extends State<PhoneVerification> {
         actions: [
           IconButton(
             icon: Icon(Icons.help_outline),
-            onPressed: () {},
+            onPressed: () {
+              showCupertinoDialog(context: context, builder: _createDialog);
+            },
           )
         ],
       ),
@@ -209,3 +212,12 @@ class _PhoneVerificationState extends State<PhoneVerification> {
     );
   }
 }
+
+Widget _createDialog(BuildContext context) => CupertinoAlertDialog(
+      title: Text("This is a fake verification."),
+      content: Text(
+          "Don't mind the numbers, once you typed 6 digits you will move to the next page!"),
+          actions: [
+            CupertinoDialogAction(child: Text("OK"), onPressed: ()=>Navigator.pop(context),)
+          ],
+    );

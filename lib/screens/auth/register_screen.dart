@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
           color: Colors.black, //change your color here
         ),
         actions: [
-          IconButton(icon: Icon(Icons.help_outline),onPressed: (){},)
+          IconButton(icon: Icon(Icons.help_outline),onPressed: (){showCupertinoDialog(context: context, builder: _createDialog);},)
         ],
       ),
       body: Container(
@@ -150,3 +151,13 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
+
+
+Widget _createDialog(BuildContext context) => CupertinoAlertDialog(
+      title: Text("Hey, this is fake!"),
+      content: Text(
+          "Just move on and relax, next page is also fake! Only after this you will register for real"),
+          actions: [
+            CupertinoDialogAction(child: Text("OK"), onPressed: ()=>Navigator.pop(context),)
+          ],
+    );
