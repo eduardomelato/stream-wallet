@@ -12,7 +12,7 @@ You can find more on Harum's work in his:
 **App Features**
 
 This app contains a simple but working authentication system using email and password based on Firebase.
-It has a profile pages, a simple transaction system that has no connection to real world applications.
+User can make transactions through a very simple transaction system that has no connection to real world applications.
 
 **Preview Images**
 
