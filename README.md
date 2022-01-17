@@ -10,6 +10,7 @@ You can find more on Harum's work in his:
 - [Instagram Account](https://www.instagram.com/harum.sh/)
 
 **App Features**
+
 This app contains a simple but working authentication system using email and password based on Firebase.
 It has a profile pages, a simple transaction system that has no connection to real world applications.
 
