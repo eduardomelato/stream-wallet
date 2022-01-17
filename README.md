@@ -14,3 +14,6 @@ This app contains a simple but working authentication system using email and pas
 It has a profile pages, a simple transaction system that has no connection to real world applications.
 
 **Preview Images**
+
+![Preview](/composition.png)
+![Preview](/black.png)
