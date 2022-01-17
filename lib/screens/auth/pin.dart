@@ -1,35 +1,36 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stream/constants.dart';
-import 'package:stream/screens/auth/personal_info.dart';
+import 'package:stream/screens/home/home_screen.dart';
 
-class PhoneVerification extends StatefulWidget {
-  const PhoneVerification({Key key}) : super(key: key);
+class PinPage extends StatefulWidget {
+  const PinPage({Key key}) : super(key: key);
 
   @override
-  _PhoneVerificationState createState() => _PhoneVerificationState();
+  _PinPageState createState() => _PinPageState();
 }
 
-class _PhoneVerificationState extends State<PhoneVerification> {
-  String _expression = "";
-  void _callbackFunctionAdd(String val) {
+class _PinPageState extends State<PinPage> {
+  String expression = "";
+  void _callbackAdd(String val) {
     setState(() {
-      _expression += val;
+      expression += val;
     });
-    if (_expression.length == 6) {
-      print(_expression);
+    if (expression.length == 6) {
+      print(expression);
       Navigator.push(
           context,
           MaterialPageRoute<void>(
-            builder: (BuildContext context) => PersonalInfo(),
+            builder: (BuildContext context) => HomePage(),
       ));
     }
   }
 
-  void _callbackFunctionRemove() {
+  void _callbackRemove() {
     setState(() {
-      _expression = "";
+      expression = "";
     });
   }
 
@@ -38,86 +39,115 @@ class _PhoneVerificationState extends State<PhoneVerification> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: kPrimaryBlue,
         elevation: 0,
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+        automaticallyImplyLeading: false,
+        title: Image.asset(
+          "assets/applogo_inapp.png",
+          width: size.width * 0.312,
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.help_outline),
-            onPressed: () {
-              showCupertinoDialog(context: context, builder: _createDialog);
-            },
-          )
-        ],
+        centerTitle: true,
       ),
       body: Container(
-        color: Colors.white,
         height: size.height,
         width: double.infinity,
+        color: kPrimaryBlue,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Spacer(),
             Text(
-              "Verification",
+              "Enter your PIN",
               style: GoogleFonts.poppins(
-                  fontSize: 20, fontWeight: FontWeight.w500),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
             ),
-            Text(
-                "Verify the handphone number by entering\nthe verification code",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.grey[600])),
-            Spacer(
-              flex: 1,
-            ),
+            Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Spacer(
+                  flex: 2,
+                ),
                 Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     height: 50,
                     width: 30,
-                    child: Text(_expression.isEmpty ? "" : _expression[0],
-                        style: GoogleFonts.montserrat(fontSize: 22))),
+                    child: Text(expression.isEmpty ? '○' : '●',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 32, color: Colors.grey[400]))),
+                Spacer(
+                  flex: 1,
+                ),
                 Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     height: 50,
                     width: 30,
-                    child: Text(_expression.length < 2 ? "" : _expression[1],
-                        style: GoogleFonts.montserrat(fontSize: 22))),
+                    child: Text(expression.length < 2 ? "○" : '●',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 32, color: Colors.grey[400]))),
+                Spacer(
+                  flex: 1,
+                ),
                 Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     height: 50,
                     width: 30,
-                    child: Text(_expression.length < 3 ? "" : _expression[2],
-                        style: GoogleFonts.montserrat(fontSize: 22))),
+                    child: Text(expression.length < 3 ? "○" : '●',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 32, color: Colors.grey[400]))),
+                Spacer(
+                  flex: 1,
+                ),
                 Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     height: 50,
                     width: 30,
-                    child: Text(_expression.length < 4 ? "" : _expression[3],
-                        style: GoogleFonts.montserrat(fontSize: 22))),
+                    child: Text(expression.length < 4 ? "○" : '●',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 32, color: Colors.grey[400]))),
+                Spacer(
+                  flex: 1,
+                ),
                 Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     height: 50,
                     width: 30,
-                    child: Text(_expression.length < 5 ? "" : _expression[4],
-                        style: GoogleFonts.montserrat(fontSize: 22))),
+                    child: Text(expression.length < 5 ? "○" : '●',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 32, color: Colors.grey[400]))),
+                Spacer(
+                  flex: 1,
+                ),
                 Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     height: 50,
                     width: 30,
                     child: Text(
-                      _expression.length < 6 ? "" : _expression[5],
-                      style: GoogleFonts.montserrat(fontSize: 22),
-                    ))
+                      expression.length < 6 ? "○" : '●',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 32, color: Colors.grey[400]),
+                    )),
+                Spacer(
+                  flex: 2,
+                ),
               ],
             ),
+            Spacer(flex: 1,)
+,            Text(
+              "Forgot your PIN?",
+              style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white),
+            ),
+                            Text(
+                  "RESET PIN",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white),
+                ),
             Spacer(
               flex: 2,
             ),
@@ -129,17 +159,20 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                   CalcButton(
                     isIcon: false,
                     text: "1",
-                    callback: _callbackFunctionAdd,
+                    textColor: 0xFFFFFFFF,
+                    callback: _callbackAdd,
                   ),
                   CalcButton(
                     isIcon: false,
                     text: "2",
-                    callback: _callbackFunctionAdd,
+                    textColor: 0xFFFFFFFF,
+                    callback: _callbackAdd,
                   ),
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "3",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   )
                 ],
               ),
@@ -151,18 +184,21 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                 children: [
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "4",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   ),
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "5",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   ),
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "6",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   )
                 ],
               ),
@@ -174,18 +210,21 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                 children: [
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "7",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   ),
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "8",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   ),
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "9",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   )
                 ],
               ),
@@ -197,36 +236,30 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                 children: [
                   CalcButton(
                     isIcon: true,
-                    icondata: Icons.fingerprint,
+                    icondata: (Icons.fingerprint),
+                    textColor: 0xFFFFFFFF,
                   ),
                   CalcButton(
                     isIcon: false,
+                    textColor: 0xFFFFFFFF,
                     text: "0",
-                    callback: _callbackFunctionAdd,
+                    callback: _callbackAdd,
                   ),
                   CalcButton(
                     isIcon: true,
                     icondata: Icons.arrow_back,
-                    callback: _callbackFunctionRemove,
+                    callback: _callbackRemove,
+                    textColor: 0xFFFFFFFF,
                   )
                 ],
               ),
             ),
+            Spacer(
+              flex: 1,
+            )
           ],
         ),
       ),
     );
   }
 }
-
-Widget _createDialog(BuildContext context) => CupertinoAlertDialog(
-      title: Text("This is a fake verification."),
-      content: Text(
-          "Don't mind the numbers, once you typed 6 digits you will move to the next page!"),
-      actions: [
-        CupertinoDialogAction(
-          child: Text("OK"),
-          onPressed: () => Navigator.pop(context),
-        )
-      ],
-    );

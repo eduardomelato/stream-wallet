@@ -43,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
               style: GoogleFonts.poppins(
                   fontSize: 20, fontWeight: FontWeight.w500),
             ),
-            Text("Choose your country code and enter\nyour phone number",
+            Text("Enter your country code and enter\nyour phone number",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                     fontSize: 18,
