@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stream/constants.dart';
-import 'package:stream/screens/home/card_center.dart';
+import 'package:stream/screens/user/card_center.dart';
+import 'package:stream/screens/user/profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -66,14 +67,25 @@ class _HomePageState extends State<HomePage> {
                       Spacer(
                         flex: 1,
                       ),
-                      CircleAvatar(
-                        radius: 24,
-                        backgroundColor: Colors.white,
-                        child: Center(
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 22,
-                            backgroundImage: AssetImage("assets/avatar.jpg"),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  ProfilePage(),
+                            ),
+                          );
+                        },
+                        child: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: Colors.white,
+                          child: Center(
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 22,
+                              backgroundImage: AssetImage("assets/avatar.jpg"),
+                            ),
                           ),
                         ),
                       ),

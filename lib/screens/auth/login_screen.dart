@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stream/constants.dart';
+import 'package:stream/screens/auth/pin.dart';
 import 'package:stream/screens/auth/register_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -117,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (BuildContext context) => LoginPage(),
+                            builder: (BuildContext context) => PinPage(),
                           ),
                         );
                       },
