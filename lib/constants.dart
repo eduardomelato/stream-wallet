@@ -203,3 +203,82 @@ class DataContainer extends StatelessWidget {
     );
   }
 }
+
+//Credit Card
+class CreditCard extends StatelessWidget {
+  final String cardnumber;
+  final String date;
+  final int color;
+  final int index;
+
+  const CreditCard({
+    Key key,
+    @required this.size, this.cardnumber, this.date, this.color, this.index,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: size.height * 0.25,
+      width: size.width * 0.86,
+      decoration: BoxDecoration(
+          color: Color(color),
+          border: Border.all(color: Color(color)),
+          borderRadius:
+              BorderRadius.all(Radius.circular(10))),
+      child: Stack(children: [
+        Positioned.fill(
+            child: Image.asset("assets/component1.png", color: Colors.grey, fit: BoxFit.cover,)),
+        Positioned(
+            right: 20,
+            top: 20,
+            child: Image.asset(
+              "assets/cardlogo.png",
+              scale: 3.6,
+            )),
+        Positioned(
+            right: 20,
+            bottom: 20,
+            child: Image.asset(
+              "assets/visa.png",
+              scale: 3.2,
+            )),
+        Positioned(
+            top: 26,
+            left: 20,
+            child: Image.asset(
+              "assets/chip.png",
+              scale: 3.5,
+            )),
+        Positioned(
+          bottom: 20,
+          left: 20,
+          child: RichText(
+            text: TextSpan(
+                text: "●●●● ●●●● ●●●● "+cardnumber,
+                style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300),
+                children: [
+                  TextSpan(
+                      text: "\nEDUARDO C MELATO",
+                      style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 14,
+                          color: Colors.white)),
+                  TextSpan(
+                      text: "\n\nVALID THRU\n"+date,
+                      style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 12,
+                          color: Colors.white))
+                ]),
+          ),
+        )
+      ]),
+    );
+  }
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stream/constants.dart';
+import 'package:stream/screens/home/card_center.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -136,7 +137,15 @@ class _HomePageState extends State<HomePage> {
                     width: double.infinity,
                     child: MaterialButton(
                       highlightColor: Colors.transparent,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  CardCenterPage(),
+                            ),
+                          );
+                      },
                       child: Column(
                         children: [
                           Spacer(),
